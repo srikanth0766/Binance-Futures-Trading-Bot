@@ -27,7 +27,7 @@ from bot.exceptions import ConfigurationError
 logger = logging.getLogger(__name__)
 
 # Default testnet base URL – can be overridden via .env
-_DEFAULT_BASE_URL = "https://testnet.binancefuture.com"
+_DEFAULT_BASE_URL = "https://demo-fapi.binance.com"
 _DEFAULT_RECV_WINDOW = 5000
 
 
