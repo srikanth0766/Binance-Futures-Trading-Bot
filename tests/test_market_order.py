@@ -35,7 +35,7 @@ def test_market_buy_order():
             "--symbol", "BTCUSDT",
             "--side",   "BUY",
             "--type",   "MARKET",
-            "--qty",    "0.001",
+            "--qty",    "0.01",
         ],
         cwd=PROJECT_ROOT,
         capture_output=True,
