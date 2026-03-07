@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --bg-color: #0d1117;
+  --panel-bg: rgba(22, 27, 34, 0.7);
+  --panel-border: rgba(48, 54, 61, 0.5);
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  
+  --accent-color: #58a6ff;
+  --accent-hover: #3182ce;
+  
+  --buy-color: #238636;
+  --buy-hover: #2ea043;
+  --buy-bg: rgba(35, 134, 54, 0.1);
+  --buy-text: #3fb950;
+  
+  --sell-color: #da3633;
+  --sell-hover: #f85149;
+  --sell-bg: rgba(218, 54, 51, 0.1);
+  --sell-text: #ff7b72;
+  
+  --input-bg: rgba(13, 17, 23, 0.8);
+  --input-border: #30363d;
+  --input-focus: #58a6ff;
+  
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  
+  --glass-blur: blur(12px);
+  --border-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(88, 166, 255, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(35, 134, 54, 0.05), transparent 25%);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.mono {
+  font-family: 'Fira Code', monospace;
+}
+
+/* Layout Container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #58a6ff, #a371f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+/* Glass Panels */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.6);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 0.75rem;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+.form-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Segmented Control (Radio Buttons) */
+.segmented-control {
+  display: flex;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.segment-label {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  border-right: 1px solid var(--input-border);
+}
+
+.segment-label:last-child {
+  border-right: none;
+}
+
+.segment-input {
+  display: none;
+}
+
+/* Buy/Sell specific segmentation */
+.segment-input:checked + .segment-label {
+  color: #fff;
+}
+
+.segment-input[value="BUY"]:checked + .segment-label {
+  background-color: var(--buy-color);
+}
+
+.segment-input[value="SELL"]:checked + .segment-label {
+  background-color: var(--sell-color);
+}
+
+/* Type segmentation */
+.segment-input[value="MARKET"]:checked + .segment-label,
+.segment-input[value="LIMIT"]:checked + .segment-label {
+  background-color: var(--input-border);
+  color: var(--text-primary);
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  color: white;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-buy {
+  background-color: var(--buy-color);
+}
+
+.btn-buy:hover:not(:disabled) {
+  background-color: var(--buy-hover);
+  box-shadow: 0 0 15px rgba(35, 134, 54, 0.4);
+}
+
+.btn-sell {
+  background-color: var(--sell-color);
+}
+
+.btn-sell:hover:not(:disabled) {
+  background-color: var(--sell-hover);
+  box-shadow: 0 0 15px rgba(218, 54, 51, 0.4);
+}
+
+/* Console Output */
+.console-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.console-output {
+  flex: 1;
+  background-color: #010409;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  overflow-y: auto;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.log-entry {
+  padding: 0.5rem;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease;
+  word-break: break-all;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.log-entry.info {
+  border-left: 2px solid var(--accent-color);
+}
+
+.log-entry.success {
+  background-color: var(--buy-bg);
+  border-left: 2px solid var(--buy-text);
+  color: var(--buy-text);
+}
+
+.log-entry.error {
+  background-color: var(--sell-bg);
+  border-left: 2px solid var(--sell-text);
+  color: var(--sell-text);
+}
+
+.log-timestamp {
+  font-size: 0.75rem;
+  color: rgba(139, 148, 158, 0.6);
+  margin-right: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.badge-BUY { background-color: var(--buy-bg); color: var(--buy-text); border: 1px solid rgba(63, 185, 80, 0.4); }
+.badge-SELL { background-color: var(--sell-bg); color: var(--sell-text); border: 1px solid rgba(255, 123, 114, 0.4); }
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
