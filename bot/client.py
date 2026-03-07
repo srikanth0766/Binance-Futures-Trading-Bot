@@ -62,7 +62,7 @@ class BinanceClient:
 
     def __init__(self, settings: Settings) -> None:
         self._settings = settings
-        self._session = self._build_session()
+        self._session = self._build_session(settings.api_key)
         logger.debug(
             "BinanceClient initialised: base_url=%s recv_window=%dms",
             settings.base_url,
@@ -72,7 +72,7 @@ class BinanceClient:
     # ── Session factory ───────────────────────────────────────────────────────
 
     @staticmethod
-    def _build_session() -> requests.Session:
+    def _build_session(api_key: str) -> requests.Session:
         """Create a ``requests.Session`` with connection-pool retries for
         network-level issues (DNS, reset, etc.), separate from application-
         level retries handled in ``_request_with_retry``."""
@@ -86,7 +86,10 @@ class BinanceClient:
         session = requests.Session()
         session.mount("https://", adapter)
         session.mount("http://", adapter)
-        session.headers.update({"Content-Type": "application/x-www-form-urlencoded"})
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        if api_key:
+            headers["X-MBX-APIKEY"] = api_key
+        session.headers.update(headers)
         return session
 
     # ── Signing ───────────────────────────────────────────────────────────────
